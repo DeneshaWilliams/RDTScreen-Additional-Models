@@ -11,3 +11,22 @@ class participants(models.Models):
 _name = 'x_participant'
 
 name = fields.Char('Enter Participant Name Here', required=True)
+
+company = fields.Many2one(comodel_name='x_company', string='Company')
+
+client = fields.Many2many(comodel_name='x_client', string ='Client', required=True)
+
+ssn = fields.Char(string='SSN', required=True)
+
+birthdate = fields.Char(string ='Birthdate', required=False)
+
+card_num = fields.Char(string='ID #', required=False)
+
+flag = fields.Char(string='Flag', required=False)
+
+street = fields.Char(string='Address')
+
+street2 = fields.Char(string='Address (Continued)')
+
+state = fields.Many2one(string='State', comodel_name='res.country.state', delegate=False)
+
