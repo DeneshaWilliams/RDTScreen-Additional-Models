@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+    <sheet name="partners">
+        <div class="oe_button_box" name="button_box" style="background-color: #213437 !important;color: white;" attrs="{'invisible': [('company_type','=', 'person')]}">
+            <button name="407" type="action" class="oe_stat_button" icon="fa-users" string="Participants"/>
+            <button name="408" type="action" class="oe_stat_button" icon="fa-phone" string="Contacts"/>
+        </div>
+    <div class="oe_title">
+      <field name="is_company" invisible="1"/>
+      <field name="company_type" widget="radio" class="oe_edit_only" options="{'horizontal': true}"/>
+      <h1>
+        <field name="name" default_focus="1" placeholder="Name" attrs="{'required' : [('type', '=', 'contact')]}"/>
+      </h1>
+      <group name="company">
+        <group name="parent">
+          <div class="o_row">
+                        <group>
+                    
+                            <field name="x_company" placeholder="Company"  attrs="{'invisible': [('company_type','=', 'company')]}"  />
+                            <field name="x_client" placeholder="Client"/>
+            </group>
+          </div>
+        </group>
+      </group>
+    </div>
+
+<group col="6">
+<field name="x_ssn" attrs="{'invisible': [('company_type','=', 'company')]}"/> 
+<field name="x_birthdate" attrs="{'invisible': [('company_type','=', 'company')]}"/>
+<field name="x_card_num" string="ID #" track_visibility='onchange' attrs="{'invisible': [('company_type','=', 'company')]}"/>
+</group>
+<group  colspan="2">
+<field name="x_flag"/>
+</group>
+
+      
+                    <group>
+                        <group name="address">
+                            <field name="type" attrs="{'invisible':1}" groups="base.group_no_one"/>
+                            <label for="x_street" string="Address"/>
+                            <div class="o_address_format">
+
+                                
+                                <field name="x_street" placeholder="Street..." class="o_address_street" />
+                                <field name="x_street2" placeholder="Street 2..." class="o_address_street" />
+                                <field name="x_city" placeholder="City" class="o_address_city" />
+                                <field name="x_state_id" class="o_address_state" placeholder="State" options="{&quot;no_open&quot;: True}"/>
+                                <field name="x_zip" placeholder="ZIP" class="o_address_zip" />
+                            </div>
+                            <br/>
+                            <br/>
+                            <field name="email" widget="email" attrs="{'required': [('user_ids','!=', [])]}"/>
+                            <field name="x_company_phone" widget="phone" attrs="{'invisible': [('company_type','=', 'person')]}"/>
+                            <field name="phone" widget="phone" string="Home" attrs="{'invisible': [('is_company','=', True)]}"/>
+                            <field name="mobile" widget="phone" attrs="{'invisible': [('is_company','=', True)]}"/>
+                            <field name="x_office_phone" attrs="{'invisible': [('is_company','=', True)]}"/>
+                            <br/><br/><br/><br/>
+                            <field name="x_position" string="Position" widget="many2many_tags" domain="[('x_is_company', '=', False)]" placeholder="Position" attrs="{'invisible': [('company_type','=', 'company')]}"/>
+                        </group>
+                            
+                        <group>
+                            <field name="x_active"/>
+                            <field name="x_unemployed" attrs="{'invisible': [('is_company','=', True)]}"/>
+                            <field name="x_consent" attrs="{'invisible': [('is_company','=', True)]}"/>
+                            <field name="x_consent_lock" attrs="{'invisible': [('is_company','=', True)]}"/>
+                             <field name="x_compliant" attrs="{'invisible': [('is_company','=', True)]}"/>
+                            <field name="x_drug_free" attrs="{'invisible': [('is_company','=', True)]}"/>
+                            <field name="x_accelerated" attrs="{'invisible': [('is_company','=', True)]}"/>
+                            <field name="x_half_apprentice" attrs="{'invisible': [('is_company','=', True)]}"/>
+                            <field name="x_full_apprentice" attrs="{'invisible': [('is_company','=', True)]}"/>
+                            <field name="x_bp_compliant" attrs="{'invisible': [('is_company','=', True)]}"/>
+                            <field name="x_escalated" attrs="{'invisible': [('company_type','=', 'person')]}"/>
+                            <field name="x_owner" attrs="{'invisible': [('company_type','=', 'person')]}"/>
+                            <field name="x_primary_contact" attrs="{'invisible': [('company_type','=', 'person')]}"/>
+                            <field name="x_primary_contact_phone"  attrs="{'invisible': [('company_type','=', 'person')]}"/>
+                            <field name="fax" attrs="{'invisible': [('company_type','=', 'person')]}"/>
+                            <field name="user_ids" invisible="1"/>
+                            <field name="x_receive_request" attrs="{'invisible': [('company_type','=', 'person')]}"/>
+                            <field name="x_auto_send" attrs="{'invisible': [('company_type','=', 'person')]}"/>
+                            <field name="x_receive_collection_sites" attrs="{'invisible': [('company_type','=', 'person')]}"/>
+                            <field name="category_id" widget="many2many_tags" string="Industry" placeholder="Tags..." domain="[('x_is_company', '=', True)]" attrs="{'invisible': [('company_type','=', 'person')]}"/>
+                            <field name="x_days_passed" attrs="{'invisible': [('is_company','=', True)]}"/>
+                            <field name="x_ref_table_id"/>
+                            <field name="create_date"/>
+                        </group>
+                    </group>
+
+                    <notebook colspan="4" name="tabs">
+
+                        <page name="participant_tests" string="Participant Tests" attrs="{'invisible': [('is_company', '=', True)]}" >
+
+                            <field name="x_participant_tests"  context="{'default_x_participant_name':active_id}" widget="one2many">
+                               <tree string="Tests" editable="bottom">
+                                  <field name="x_participant_name" string="Current Participant" invisible="1"/>
+                                  <field name="x_test_type" string="Test Type" readonly="0"/>
+                                  <field name="x_participant_client" string="Billed Client" readonly="0"/>
+                                  <field name="x_date_requested" string="Date Requested" readonly="0"/>
+                                  <field name="x_cds" readonly="0"/>
+                                  <field name="x_date_notified" string="Date Notified" readonly="0"/>
+                                  <field name="x_date_tested" readonly="0"/>
+                                  <field name="x_requisition_id" readonly="0"/>
+                                  <field name="x_specimen_id" readonly="0"/>
+                                  <field name="x_result_set" readonly="0"/>
+                                  <field name="x_signed_release" readonly="0"/>
+                                  <field name="x_available" readonly="0"/>
+                                  <field name="x_reason_for_not_testing" readonly="0"/>
+                               </tree>
+                            </field>
+                            <button name="406" string="Tap here to edit" type="action" class="oe_highlight" style="margin-bottom: 20px;"></button> 
+                         </page>
+                                                 
+                    </notebook>
+                    <div class="oe_chatter">
+                        <!--<field name="message_follower_ids" widget="mail_followers"/>-->
+                        <field name="message_ids" widget="mail_thread" options="{&quot;thread_level&quot;: 1}"/>
+                    </div>
+                </sheet>
