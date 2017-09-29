@@ -30,3 +30,28 @@ street2 = fields.Char(string='Address (Continued)')
 
 state = fields.Many2one(string='State', comodel_name='res.country.state', delegate=False)
 
+email = fields.Char(string='Email', required=False)
+
+home = fields.Char(string='Home', required=False)
+
+mobile = fields.Char(string='Mobile', required=False)
+
+work = fields.Char(string='Work', required=False)
+
+position = fields.Many2many(string='Position', comodel_name='res.partner.category')
+
+active = fields.Boolean(string='Active')
+
+employed = fields.Boolean(string='Employed', required=False)
+
+consent = fields.Boolean(string='consent', required=False)
+
+consent_lock = fields.Boolean(string='Consent Lock', required=False)
+
+compliant = fields.Boolean(string='Compliant')
+
+drug_free_card = fields.Boolean(string='Drug Free Card', required=False)
+
+accelerated = fields.Boolean(string='Accelerated', required=False)
+
+half_apprentice = fields.Boolean(string='50% Apprentice', required=False)
