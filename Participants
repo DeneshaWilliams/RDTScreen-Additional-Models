@@ -55,3 +55,4 @@ drug_free_card = fields.Boolean(string='Drug Free Card', required=False)
 accelerated = fields.Boolean(string='Accelerated', required=False)
 
 half_apprentice = fields.Boolean(string='50% Apprentice', required=False)
+
