@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<form string="Customers">
+<form string="Participants">
                 <sheet>
                     <group>
                         <field name="display_name"/>
